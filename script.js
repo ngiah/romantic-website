@@ -1,11 +1,9 @@
 const flirts = [
-  "Cậu có bản đồ không? Tớ cứ lạc trong mắt cậu mãi.",
   "Phô mai que cần tương ớt, còn tớ thì cần cậu.",
   "Dạo này tớ hơi thiếu vitamin Cậu.",
   "Trái Đất có 8 tỷ người, mà mắt tớ cứ tự động tìm cậu.",
-  "Cậu học giỏi Xuất sắc, còn tớ chỉ giỏi xuất hiện cạnh cậu thôi.",
-  "Tớ không mê tín, nhưng gặp cậu chắc chắn là điềm lành.",
-  "Cậu có mỏi chân không? Vì cậu chạy trong đầu tớ cả ngày rồi."
+  "Cậu học giỏi xuất sắc, còn tớ chỉ giỏi xuất hiện cạnh cậu thôi.",
+  "Tớ không mê tín, nhưng gặp cậu chắc chắn là điềm lành."
 ];
 
 const flirtText = document.querySelector("#flirtText");
@@ -55,3 +53,7 @@ document.querySelector("#yesBtn").addEventListener("click", () => {
 });
 
 document.querySelector("#closeSuccess").addEventListener("click", () => success.classList.remove("show"));
+
+setInterval(() => {
+  if (!document.hidden && Math.random() > .35) burst(2);
+}, 3200);

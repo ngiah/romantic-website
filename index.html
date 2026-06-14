@@ -9,97 +9,66 @@
 </head>
 <body>
   <div class="grain"></div>
-  <div id="heartRain" aria-hidden="true"></div>
-
-  <header class="hero">
-    <nav>
-      <a class="logo" href="#">thư gửi Thư ♡</a>
-      <a class="tiny-pill" href="#album">mở album ↓</a>
-    </nav>
-
-    <div class="hero-copy">
-      <span class="eyebrow">thông báo khẩn từ trái tim</span>
-      <h1>Hình như tớ<br><em>thích cậu</em> mất rồi.</h1>
-      <p>Không phải “hình như” đâu. Tớ đã kiểm tra lại nhiều lần, lỗi này không sửa được.</p>
-      <button class="primary-btn" id="openLetter">Nhận thư nè <span>💌</span></button>
-    </div>
-
-    <div class="hero-photo">
-      <div class="sun"></div>
-      <div class="photo-frame">
-        <img src="photo_mt/707414850_1002834685541087_1953178167750928396_n.jpg" alt="Minh Thư">
-        <span class="tape tape-one"></span>
-        <span class="tape tape-two"></span>
-        <div class="caption">Cậu giỏi nhất, xinh nhất ♡</div>
-      </div>
-      <span class="float-note note-one">100 điểm<br>đáng yêu!</span>
-      <span class="float-note note-two">my favorite<br>person ✦</span>
-    </div>
-    <div class="scroll-note">cuộn xuống nha</div>
-  </header>
+  <div class="sparkles" aria-hidden="true">
+    <i>✦</i><i>♡</i><i>✧</i><i>✦</i><i>♡</i><i>✧</i><i>✦</i><i>♡</i>
+  </div>
 
   <main>
-    <section class="reasons" id="album">
-      <div class="section-heading">
-        <span class="eyebrow">hồ sơ rung động</span>
-        <h2>Một vài lý do làm<br>trái tim tớ lỡ nhịp</h2>
+    <section class="hero">
+      <nav>
+        <span class="logo">thư gửi Thư ♡</span>
+        <span class="status"><b></b> tín hiệu rung động mạnh</span>
+      </nav>
+
+      <div class="hero-copy">
+        <span class="eyebrow blink">thông báo khẩn từ trái tim ✦</span>
+        <h1>Hình như tớ<br><em>thích cậu</em><br>mất rồi.</h1>
+        <p>Không phải “hình như” đâu. Tớ kiểm tra lại nhiều lần rồi, lỗi này không sửa được.</p>
+        <div class="hero-actions">
+          <button class="primary-btn" id="openLetter">Nhận thư nè 💌</button>
+          <a href="#loveCard">Xem bằng chứng ↓</a>
+        </div>
       </div>
 
-      <div class="polaroid-grid">
-        <article class="polaroid tilt-left">
-          <img src="photo_mt/707189377_1002834795541076_6396588151438301865_n.jpg" alt="Khoảnh khắc đáng yêu">
-          <p>01. Vì nụ cười của cậu làm ngày nào cũng sáng hơn.</p>
-        </article>
-        <article class="polaroid lift">
-          <img src="photo_mt/707377655_1002837825540773_5548567294762404418_n.jpg" alt="Khoảnh khắc xinh đẹp">
-          <p>02. Vì cậu chẳng cần cố gắng vẫn đáng yêu quá trời.</p>
-        </article>
-        <article class="polaroid tilt-right">
-          <img src="photo_mt/528324157_769382648886293_6664278529166334514_n.jpg" alt="Khoảnh khắc dễ thương">
-          <p>03. Vì mỗi lần thấy cậu, tim tớ tự dưng mở hội.</p>
-        </article>
+      <div class="hero-photo">
+        <div class="halo"></div>
+        <div class="photo-frame">
+          <img src="photo_mt/707414850_1002834685541087_1953178167750928396_n.jpg" alt="Minh Thư">
+          <div class="caption">Cậu giỏi nhất, xinh nhất ♡</div>
+        </div>
+        <span class="sticker sticker-one">100 điểm<br>đáng yêu!</span>
+        <span class="sticker sticker-two">my favorite<br>person ✦</span>
+        <span class="photo-star star-one">✦</span>
+        <span class="photo-star star-two">✧</span>
+        <span class="photo-star star-three">♡</span>
       </div>
     </section>
 
-    <section class="flirt-lab">
-      <div class="canva-card">
-        <img src="assets/canva-cute-postcard.png" alt="Cute romantic decorations created with Canva">
-        <span>cute corner by Canva ✿</span>
+    <section class="love-card" id="loveCard">
+      <div class="collage">
+        <img class="big-pic" src="photo_mt/707189377_1002834795541076_6396588151438301865_n.jpg" alt="Minh Thư">
+        <img src="photo_mt/707377655_1002837825540773_5548567294762404418_n.jpg" alt="Minh Thư">
+        <img src="photo_mt/528324157_769382648886293_6664278529166334514_n.jpg" alt="Minh Thư">
+        <img src="photo_mt/518354854_755320263625865_1284304589524425838_n.jpg" alt="Minh Thư">
+        <span class="collage-label">xinh quá trời ơi!</span>
       </div>
-      <div class="flirt-copy">
-        <span class="eyebrow">máy đo độ tương tư</span>
-        <h2>Ấn thử đi,<br>biết đâu trúng tim.</h2>
+
+      <div class="proposal">
+        <span class="eyebrow">máy đo độ tương tư: 100%</span>
+        <h2>Cho tớ một cơ hội<br>được thương cậu nha?</h2>
         <div class="quote-box">
           <span>“</span>
-          <p id="flirtText">Cậu có bản đồ không? Tớ cứ lạc trong mắt cậu mãi.</p>
+          <p id="flirtText">Phô mai que cần tương ớt, còn tớ thì cần cậu.</p>
+          <button id="newFlirt" aria-label="Đổi câu thả thính">đổi câu khác ✦</button>
         </div>
-        <button class="secondary-btn" id="newFlirt">Thả thính câu khác ✦</button>
-      </div>
-    </section>
-
-    <section class="mini-gallery">
-      <div class="gallery-track">
-        <img src="photo_mt/510381646_18011883422754402_4276143487810740849_n.jpg" alt="Minh Thư">
-        <img src="photo_mt/511575816_18011883104754402_4849868360829623229_n.jpg" alt="Minh Thư">
-        <div class="gallery-word">xinh</div>
-        <img src="photo_mt/518276715_755320300292528_3308897098917081252_n.jpg" alt="Minh Thư">
-        <img src="photo_mt/518354854_755320263625865_1284304589524425838_n.jpg" alt="Minh Thư">
-        <div class="gallery-word accent">quá!</div>
-      </div>
-    </section>
-
-    <section class="question">
-      <span class="eyebrow">câu hỏi quan trọng nhất hôm nay</span>
-      <h2>Cho tớ một cơ hội<br>được thương cậu nha?</h2>
-      <p>Tớ hứa sẽ luôn cổ vũ cậu, mua phô mai que cho cậu, và làm cậu cười thật nhiều.</p>
-      <div class="answer-zone">
-        <button class="yes-btn" id="yesBtn">Ừ, đồng ý ♡</button>
-        <button class="no-btn" id="noBtn">Để tớ suy nghĩ</button>
+        <p class="promise">Tớ hứa sẽ luôn cổ vũ cậu, mua phô mai que cho cậu và làm cậu cười thật nhiều.</p>
+        <div class="answer-zone">
+          <button class="yes-btn" id="yesBtn">Ừ, đồng ý ♡</button>
+          <button class="no-btn" id="noBtn">Để tớ suy nghĩ</button>
+        </div>
       </div>
     </section>
   </main>
-
-  <footer>Làm bằng rất nhiều rung động ♡</footer>
 
   <dialog id="letterModal">
     <button class="close-modal" id="closeLetter" aria-label="Đóng">×</button>
