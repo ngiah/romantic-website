@@ -1,171 +1,97 @@
-const state = {
-  hasAcceptedDateInvite: false,
-  selectedDateType: null,
-  customDateIdea: "",
-  selectedDateTime: null,
-  customDateTime: "",
-  finalConfirmed: false,
-  isSubmitting: false,
-  submitStatus: "idle",
-  submitError: ""
-};
+const state = { selectedDateType: null, selectedDateTime: null, noCount: 0 };
 
 const dateTypes = [
-  { id: "food-movie", icon: "🍿", title: "Ăn uống + coi phim", description: "Mình đi ăn một món ngon trước, rồi xem một bộ phim em thích.", note: "Hợp nếu em muốn một buổi date no bụng và dễ vui." },
-  { id: "coffee-movie", icon: "☕", title: "Cà phê + coi phim", description: "Mình ngồi cà phê nói chuyện một chút, rồi đi xem phim.", note: "Hợp nếu em muốn nhẹ nhàng, dễ nói chuyện hơn." },
-  { id: "custom", icon: "🎀", title: "Em muốn gì cũng được", description: "Em chọn món, chọn chỗ, chọn mood. Anh nghe theo.", note: "Hợp nếu em đã có idea riêng." },
-  { id: "surprise", icon: "✨", title: "Bất ngờ đi anh", description: "Anh tự lên plan, em chỉ cần xinh đẹp xuất hiện.", note: "Hợp nếu em muốn anh tự chuẩn bị từ A tới Z." }
+  { id: "food-movie", icon: "🍿", title: "Ăn uống + coi phim", description: "No bụng, vui vẻ, coi một bộ phim em thích." },
+  { id: "coffee-movie", icon: "☕", title: "Cà phê + coi phim", description: "Nhẹ nhàng nói chuyện rồi mình đi xem phim." },
+  { id: "custom", icon: "🎀", title: "Em chọn mood", description: "Em chọn món, chọn chỗ, chọn mọi thứ em thích." },
+  { id: "surprise", icon: "✨", title: "Bất ngờ đi anh", description: "Anh tự lên plan, em chỉ cần xinh đẹp xuất hiện." }
 ];
-
 const dateTimes = [
-  { id: "saturday", icon: "🌤️", title: "Sáng thứ 7", description: "Một buổi sáng nhẹ nhàng, đi ăn hoặc cà phê rồi xem phim cũng xinh.", note: "Hợp nếu em thích đi sớm, đỡ đông và có nhiều thời gian." },
-  { id: "later", icon: "🌷", title: "Một dịp không xa", description: "Không cần gấp. Khi nào em thấy thoải mái thì mình đi.", note: "Hợp nếu em muốn chọn ngày sau." },
-  { id: "custom-time", icon: "🗓️", title: "Em chọn lịch nha", description: "Em chọn ngày giờ tiện nhất, anh sẽ sắp xếp theo em.", note: "Hợp nếu lịch của em hơi khó đoán." }
+  { id: "saturday", icon: "🌤️", title: "Sáng thứ 7", description: "Đi sớm một chút, đỡ đông và có nhiều thời gian." },
+  { id: "later", icon: "🌷", title: "Một dịp không xa", description: "Không cần gấp, lúc nào em thoải mái thì mình đi." },
+  { id: "custom-time", icon: "🗓️", title: "Em chọn lịch nha", description: "Em chọn ngày tiện nhất, anh sắp xếp theo em." }
 ];
-
 const $ = (selector) => document.querySelector(selector);
 
-function optionCard(item, group) {
-  return `<button class="option-card" data-group="${group}" data-id="${item.id}">
-    <span class="option-icon">${item.icon}</span><span class="selected-heart">♡</span>
-    <strong>${item.title}</strong><span>${item.description}</span><small>${item.note}</small>
+function card(item, group) {
+  return `<button class="choice-card" data-group="${group}" data-id="${item.id}">
+    <span class="card-glow"></span><span class="choice-icon">${item.icon}</span>
+    <strong>${item.title}</strong><small>${item.description}</small><i>chọn chiếc này ♡</i>
   </button>`;
 }
+$("#dateOptions").innerHTML = dateTypes.map((item) => card(item, "date")).join("");
+$("#timeOptions").innerHTML = dateTimes.map((item) => card(item, "time")).join("");
 
-$("#dateOptions").innerHTML = dateTypes.map((item) => optionCard(item, "date")).join("");
-$("#timeOptions").innerHTML = dateTimes.map((item) => optionCard(item, "time")).join("");
-
-function reveal(selector) {
-  const element = $(selector);
-  element.hidden = false;
-  requestAnimationFrame(() => element.classList.add("is-visible"));
-  setTimeout(() => element.scrollIntoView({ behavior: "smooth", block: "start" }), 180);
+const noLines = ["Ủa nút này hơi khó bấm á", "Em suy nghĩ lại xíu đi", "Nút đồng ý đang đẹp hơn đó", "Anh thấy em sắp đồng ý rồi á"];
+function dodgeNo() {
+  state.noCount += 1;
+  const playground = $("#answerPlayground");
+  const maxX = Math.max(30, playground.clientWidth - $("#noBtn").offsetWidth);
+  const maxY = Math.max(30, playground.clientHeight - $("#noBtn").offsetHeight);
+  $("#noBtn").style.left = `${Math.random() * maxX}px`;
+  $("#noBtn").style.top = `${Math.random() * maxY}px`;
+  const scale = Math.min(2.25, 1 + state.noCount * .17);
+  $("#yesBtn").style.transform = `scale(${scale})`;
+  $("#tease").textContent = noLines[state.noCount % noLines.length];
 }
+$("#noBtn").addEventListener("mouseenter", dodgeNo);
+$("#noBtn").addEventListener("touchstart", (event) => { event.preventDefault(); dodgeNo(); });
+$("#noBtn").addEventListener("click", dodgeNo);
 
-function selectCard(card) {
-  document.querySelectorAll(`[data-group="${card.dataset.group}"]`).forEach((item) => item.classList.remove("selected"));
-  card.classList.add("selected");
-}
-
-$("#acceptInvite").addEventListener("click", () => {
-  state.hasAcceptedDateInvite = true;
-  reveal("#dateChoice");
-  burst(12);
+$("#yesBtn").addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "auto" });
+  $("#planner").hidden = false;
+  document.body.classList.add("planning");
+  requestAnimationFrame(() => $("#planner").classList.add("open"));
+  burst(28);
 });
 
-$("#thinkBtn").addEventListener("click", () => {
-  $("#softMessage").textContent = "Không sao hết. Em cứ suy nghĩ thoải mái nha, anh vẫn thấy em đáng yêu.";
-});
+function switchScene(from, to, progress) {
+  const current = $(from);
+  const next = $(to);
+  current.classList.add("exit");
+  next.classList.add("entering");
+  setTimeout(() => {
+    current.classList.remove("active", "exit");
+    next.classList.remove("entering");
+    next.classList.add("active");
+    $("#progress").textContent = progress;
+  }, 520);
+}
 
 $("#dateOptions").addEventListener("click", (event) => {
-  const card = event.target.closest(".option-card");
-  if (!card) return;
-  selectCard(card);
-  state.selectedDateType = dateTypes.find((item) => item.id === card.dataset.id);
-  $("#dateIdeaWrap").hidden = state.selectedDateType.id !== "custom";
-  if (state.selectedDateTime) updatePlan();
-  reveal("#timeChoice");
+  const cardElement = event.target.closest(".choice-card");
+  if (!cardElement) return;
+  state.selectedDateType = dateTypes.find((item) => item.id === cardElement.dataset.id);
+  cardElement.classList.add("picked");
+  burst(8);
+  setTimeout(() => switchScene("#dateScene", "#timeScene", "02 / chọn thời gian"), 260);
 });
 
 $("#timeOptions").addEventListener("click", (event) => {
-  const card = event.target.closest(".option-card");
-  if (!card) return;
-  selectCard(card);
-  state.selectedDateTime = dateTimes.find((item) => item.id === card.dataset.id);
-  $("#dateTimeWrap").hidden = state.selectedDateTime.id !== "custom-time";
-  updatePlan();
-  reveal("#finalConfirm");
-});
-
-$("#dateIdea").addEventListener("input", (event) => { state.customDateIdea = event.target.value.trim(); });
-$("#dateTime").addEventListener("input", (event) => { state.customDateTime = event.target.value.trim(); updatePlan(); });
-
-function updatePlan() {
-  const type = state.selectedDateType?.id;
-  const time = state.selectedDateTime?.id;
-  let text = "Vậy anh sẽ chuẩn bị một buổi đi chơi thật gọn, xinh và hợp ý em nha.";
-  if (time === "custom-time") text = "Vậy anh sẽ sắp xếp theo lịch em chọn nha.";
-  else if (type === "food-movie" && time === "saturday") text = "Vậy sáng thứ 7 mình đi ăn gì đó ngon trước, rồi xem một bộ phim hợp mood của em nha.";
-  else if (type === "coffee-movie" && time === "later") text = "Vậy một dịp không xa, mình đi cà phê nói chuyện trước rồi xem phim sau nha.";
-  else if (type === "food-movie") text = "Vậy mình đi ăn gì đó ngon trước, rồi xem một bộ phim hợp mood của em nha.";
-  else if (type === "coffee-movie") text = "Vậy mình đi cà phê trước cho dễ nói chuyện, rồi xem phim sau nha.";
-  else if (type === "custom") text = "Vậy em gợi ý đi, anh sẽ sắp xếp theo ý em.";
-  else if (type === "surprise") text = "Rồi, để anh tự lên plan. Em chỉ cần chuẩn bị tinh thần được chiều thôi.";
-  $("#dynamicPlan").textContent = text;
-}
-
-async function submitDateResponse(payload) {
-  const endpoint = window.DATE_RESPONSE_ENDPOINT;
-  if (endpoint) {
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    if (!response.ok) throw new Error("Endpoint không nhận được kết quả.");
-    return "endpoint";
-  }
-
-  const subject = encodeURIComponent("Kèo date đã được em chọn ♡");
-  const body = encodeURIComponent(
-    `Kiểu date: ${payload.selectedDateType}\nGhi chú của em: ${payload.customDateIdea || "Không có"}\nThời gian: ${payload.selectedDateTime}\nLịch em gợi ý: ${payload.customDateTime || "Không có"}\nThời điểm gửi: ${payload.submittedAt}`
-  );
-  window.location.href = `mailto:?subject=${subject}&body=${body}`;
-  return "mailto";
-}
-
-$("#confirmDate").addEventListener("click", async () => {
-  if (state.isSubmitting) return;
-  state.isSubmitting = true;
-  state.submitStatus = "loading";
-  const button = $("#confirmDate");
-  button.disabled = true;
-  button.textContent = "Anh đang lưu kèo date của mình…";
-
-  const payload = {
-    selectedDateType: state.selectedDateType.title,
-    selectedDateTypeDescription: state.selectedDateType.description,
-    customDateIdea: state.customDateIdea,
-    selectedDateTime: state.selectedDateTime.title,
-    selectedDateTimeDescription: state.selectedDateTime.description,
-    customDateTime: state.customDateTime,
-    submittedAt: new Date().toISOString(),
-    userAgent: navigator.userAgent
-  };
-
-  try {
-    const method = await submitDateResponse(payload);
-    state.submitStatus = "success";
-    if (method === "mailto") {
-      state.submitError = "Anh chưa nhận được kết quả tự động, nhưng em có thể gửi email vừa mở hoặc chụp màn hình gửi anh nha.";
-    }
-  } catch (error) {
-    state.submitStatus = "error";
-    state.submitError = "Anh chưa nhận được kết quả tự động, nhưng em có thể chụp màn hình gửi anh nha.";
-  } finally {
-    state.isSubmitting = false;
-    state.finalConfirmed = true;
-    renderSummary();
-    reveal("#resultSection");
-    burst(40);
-  }
+  const cardElement = event.target.closest(".choice-card");
+  if (!cardElement) return;
+  state.selectedDateTime = dateTimes.find((item) => item.id === cardElement.dataset.id);
+  cardElement.classList.add("picked");
+  renderSummary();
+  burst(8);
+  setTimeout(() => switchScene("#timeScene", "#finalScene", "03 / chốt kèo"), 260);
 });
 
 function renderSummary() {
   const rows = [
-    ["Người rủ", "Anh"], ["Người được rủ", "Em"],
-    ["Kiểu date đã chọn", state.selectedDateType.title],
-    ["Ghi chú của em", state.customDateIdea || "Để anh chuẩn bị nha"],
-    ["Thời gian em chọn", state.selectedDateTime.title],
-    ["Lịch em gợi ý", state.customDateTime || "Mình sẽ chốt sau"],
-    ["Trạng thái", "Đã chốt, anh đang chuẩn bị"]
+    ["Người rủ", "Anh"], ["Người được rủ", "Minh Thư đáng eooo"],
+    ["Kiểu date", state.selectedDateType.title], ["Thời gian", state.selectedDateTime.title],
+    ["Trạng thái", "Chờ em chốt kèo ♡"]
   ];
   $("#summaryList").innerHTML = rows.map(([key, value]) => `<div><dt>${key}</dt><dd>${value}</dd></div>`).join("");
-  if (state.submitError) {
-    $("#submitError").hidden = false;
-    $("#submitError").textContent = state.submitError;
-  }
 }
+
+$("#confirmDate").addEventListener("click", () => {
+  switchScene("#finalScene", "#successScene", "CONFIRMED ♡");
+  burst(55);
+});
+$("#backToTicket").addEventListener("click", () => switchScene("#successScene", "#finalScene", "03 / kèo date"));
 
 function burst(count = 12) {
   for (let i = 0; i < count; i++) {
@@ -180,3 +106,31 @@ function burst(count = 12) {
     setTimeout(() => heart.remove(), 2800);
   }
 }
+
+if (window.matchMedia("(pointer: fine)").matches) {
+  document.addEventListener("pointermove", (event) => {
+    const x = (event.clientX / window.innerWidth - .5) * 2;
+    const y = (event.clientY / window.innerHeight - .5) * 2;
+    const heroPhoto = $(".hero-photo");
+    if (heroPhoto && !document.body.classList.contains("planning")) {
+      heroPhoto.style.transform = `translate3d(${x * 7}px, ${y * 5}px, 0)`;
+    }
+  }, { passive: true });
+
+  document.addEventListener("pointerout", () => {
+    const heroPhoto = $(".hero-photo");
+    if (heroPhoto) heroPhoto.style.transform = "";
+  });
+}
+
+const galleryObserver = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) {
+    entry.target.classList.add("in-view");
+    $(".scroll-cue").classList.add("visible");
+  } else {
+    $(".scroll-cue").classList.remove("visible");
+  }
+}, { threshold: .12 });
+galleryObserver.observe($("#cuteGallery"));
+
+$(".scroll-cue").addEventListener("click", () => $(".scroll-cue").classList.remove("visible"));

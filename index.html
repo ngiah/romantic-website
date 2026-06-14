@@ -11,18 +11,16 @@
   <div class="grain"></div>
   <div class="sparkles" aria-hidden="true"><i>✦</i><i>♡</i><i>✧</i><i>✦</i><i>♡</i><i>✧</i></div>
 
-  <main>
+  <main id="story">
     <section class="hero">
       <nav><span class="logo">một lời mời nhỏ ♡</span><span class="status"><b></b> gửi riêng cho em</span></nav>
       <div class="hero-copy">
+        <p class="hello-line">Xin chào Minh Thư đáng yêu ♡</p>
         <span class="eyebrow blink">không có gì áp lực đâu nè ✦</span>
         <h1>Anh có một<br><em>lời mời nhỏ</em><br>dành cho em.</h1>
-        <p>Không có gì quá lớn đâu. Anh chỉ muốn rủ em đi ăn gì đó ngon, xem một bộ phim vui, uống một ly nước xinh và có thêm một buổi thật dễ nhớ với em.</p>
-        <div class="hero-actions">
-          <button class="primary-btn" id="acceptInvite">Em đi date với anh nha ♡</button>
-          <button class="soft-btn" id="thinkBtn">Để em suy nghĩ đã</button>
-        </div>
-        <p class="soft-message" id="softMessage" aria-live="polite"></p>
+        <p>Một lời mời đáng yêu dành đến cho em, bấm ở dưới để xem tiếp nha.</p>
+        <a class="primary-btn link-btn" href="#cuteGallery">Xem lời mời nè ♡</a>
+        <img class="canva-boy hello-boy" src="assets/canva-boy-invite.png" alt="Chàng trai vẫy tay xin chào">
       </div>
       <div class="hero-photo">
         <div class="halo"></div>
@@ -31,84 +29,70 @@
           <div class="caption">một chiếc date thật xinh? ♡</div>
         </div>
         <span class="sticker sticker-one">ăn ngon<br>nói chuyện vui</span>
-        <span class="sticker sticker-two">no pressure<br>just good vibes ✦</span>
+        <span class="sticker sticker-two">good vibes<br>only ✦</span>
       </div>
     </section>
 
-    <section class="reasons">
+    <section class="gallery-section" id="cuteGallery">
+      <div class="heart-cloud" aria-hidden="true"><span>♡</span><span>♥</span><span>♡</span><span>✦</span><span>♡</span></div>
       <div class="section-title">
-        <span class="eyebrow">ba lý do nhỏ</span>
-        <h2>Một vài lý do anh muốn rủ em đi chơi</h2>
+        <span class="eyebrow">mấy tấm hình đáng yêu của em</span>
+        <h2>Trước khi trả lời, ngắm nhân vật chính một chút nha</h2>
       </div>
-      <div class="polaroid-grid">
-        <article class="polaroid">
-          <img src="photo_mt/707189377_1002834795541076_6396588151438301865_n.jpg" alt="">
-          <h3>Vì nói chuyện với em làm ngày của anh vui hơn.</h3>
-          <p>Không cần gì quá đặc biệt, chỉ cần có em là buổi đó đã dễ chịu hơn rồi.</p>
-        </article>
-        <article class="polaroid">
-          <img src="photo_mt/707377655_1002837825540773_5548567294762404418_n.jpg" alt="">
-          <h3>Vì anh muốn chuẩn bị một buổi đi chơi tử tế.</h3>
-          <p>Có chỗ ăn ngon, có phim để xem, có thời gian để nói chuyện và cười với nhau.</p>
-        </article>
-        <article class="polaroid">
-          <img src="photo_mt/528324157_769382648886293_6664278529166334514_n.jpg" alt="">
-          <h3>Vì anh muốn hiểu em nhiều hơn.</h3>
-          <p>Không vội. Chỉ là thêm một buổi để mình gần nhau hơn một chút.</p>
-        </article>
+      <div class="photo-ribbon">
+        <figure><img src="photo_mt/510381646_18011883422754402_4276143487810740849_n.jpg" alt=""><figcaption>xinh ✦</figcaption></figure>
+        <figure><img src="photo_mt/511169307_18011883443754402_7207813755287251023_n.jpg" alt=""><figcaption>cute ♡</figcaption></figure>
+        <figure><img src="photo_mt/511575816_18011883104754402_4849868360829623229_n.jpg" alt=""><figcaption>iu quá</figcaption></figure>
+        <figure><img src="photo_mt/512263773_18011883086754402_2020703086368632281_n.jpg" alt=""><figcaption>rung động</figcaption></figure>
+        <figure><img src="photo_mt/512435779_18011883404754402_5354780485929832414_n.jpg" alt=""><figcaption>10 điểm</figcaption></figure>
+        <figure><img src="photo_mt/518276715_755320300292528_3308897098917081252_n.jpg" alt=""><figcaption>đáng yêu</figcaption></figure>
+        <figure><img src="photo_mt/518354854_755320263625865_1284304589524425838_n.jpg" alt=""><figcaption>my fav ♡</figcaption></figure>
       </div>
+      <a class="scroll-cue" href="#inviteQuestion">
+        <span>kéo xuống nha</span>
+        <i>↓</i>
+      </a>
     </section>
 
-    <section class="flow-section reveal-section" id="dateChoice" hidden>
-      <div class="section-title">
-        <span class="step">01 / chọn mood</span>
-        <h2>Gu đi date của em là gì aayyyy?</h2>
-        <p>Em chọn kiểu em thích nha. Anh sẽ dựa vào đó để lên kế hoạch gọn, xinh và hợp ý em nhất.</p>
+    <section class="invite-question" id="inviteQuestion">
+      <img class="canva-boy invite-boy" src="assets/canva-boy-invite.png" alt="Chàng trai gửi lời mời đi chơi">
+      <span class="eyebrow blink">câu hỏi quan trọng nè ✦</span>
+      <h2>Em đi date<br>với anh nhoooo?</h2>
+      <p>Đi ăn món ngon, xem phim vui, nói chuyện thoải mái. Một buổi nhẹ nhàng thôi nè.</p>
+      <div class="answer-playground" id="answerPlayground">
+        <button class="yes-btn" id="yesBtn">Em đồng ý ♡</button>
+        <button class="no-btn" id="noBtn">Em không</button>
       </div>
-      <div class="option-grid" id="dateOptions"></div>
-      <div class="custom-field" id="dateIdeaWrap" hidden>
-        <label for="dateIdea">Em muốn đi đâu hoặc ăn gì nè?</label>
-        <textarea id="dateIdea" placeholder="Ví dụ: ăn lẩu, đi ăn kem, đi photobooth, cafe yên yên, xem phim hoạt hình…"></textarea>
-      </div>
-    </section>
-
-    <section class="flow-section reveal-section alt" id="timeChoice" hidden>
-      <div class="section-title">
-        <span class="step">02 / chọn thời gian</span>
-        <h2>Vậy mình đi khi nào thì hợp nè?</h2>
-        <p>Anh gợi ý trước vài lựa chọn nhẹ nhàng thôi. Em chọn cái nào thấy thoải mái nhất nha.</p>
-      </div>
-      <div class="option-grid three" id="timeOptions"></div>
-      <div class="custom-field" id="dateTimeWrap" hidden>
-        <label for="dateTime">Em muốn đi ngày nào nè?</label>
-        <input id="dateTime" type="text" placeholder="Ví dụ: chiều thứ 7, sáng chủ nhật, sau khi thi xong, tuần sau…">
-      </div>
-    </section>
-
-    <section class="flow-section reveal-section final-section" id="finalConfirm" hidden>
-      <div class="final-card">
-        <span class="eyebrow">kèo này nghe xinh đó ✦</span>
-        <h2>Anh nhận kèo nha.</h2>
-        <p id="dynamicPlan"></p>
-        <button class="primary-btn" id="confirmDate">Chốt kèo với anh ♡</button>
-        <p class="submit-note" id="submitNote" aria-live="polite"></p>
-      </div>
-    </section>
-
-    <section class="result-section reveal-section" id="resultSection" hidden>
-      <div class="success-copy">
-        <span>♡</span>
-        <h2>Yayy, vậy là anh có một buổi date cần chuẩn bị thật xịn rồi ♡</h2>
-      </div>
-      <article class="date-ticket">
-        <div class="ticket-head"><span>Kèo date của mình</span><b>CONFIRMED ♡</b></div>
-        <dl id="summaryList"></dl>
-        <p id="submitError" class="error-message" hidden></p>
-      </article>
+      <p class="tease" id="tease" aria-live="polite">Anh chờ câu trả lời của em đó nha.</p>
     </section>
   </main>
 
-  <script src="config.js"></script>
+  <div class="planner" id="planner" hidden>
+    <div class="planner-bg"></div>
+    <div class="planner-top"><span class="logo">date planner ♡</span><span id="progress">01 / chọn mood</span></div>
+    <div class="scene-stage">
+      <section class="planner-scene active" id="dateScene">
+        <div class="scene-copy"><span class="eyebrow">bước đầu tiên</span><h2>Em thích date kiểu nào?</h2><p>Chọn một chiếc mood làm em thấy vui nhất nha.</p></div>
+        <div class="choice-cards" id="dateOptions"></div>
+      </section>
+      <section class="planner-scene" id="timeScene">
+        <div class="scene-copy"><span class="eyebrow">thêm một chút nữa</span><h2>Mình đi khi nào thì hợp nè?</h2><p>Em chọn lúc thoải mái nhất, anh sẽ sắp xếp theo em.</p></div>
+        <div class="choice-cards three" id="timeOptions"></div>
+      </section>
+      <section class="planner-scene" id="finalScene">
+        <article class="date-ticket">
+          <span class="ticket-star">✦</span>
+          <div class="ticket-head"><span>Kèo date của mình</span><b>READY ♡</b></div>
+          <dl id="summaryList"></dl>
+          <button class="yes-btn" id="confirmDate">Chốt kèo với anh ♡</button>
+        </article>
+      </section>
+      <section class="planner-scene" id="successScene">
+        <div class="success-card"><span>♡</span><h2>Yayyy, anh có một buổi date cần chuẩn bị thật xịn rồi!</h2><p>Chụp màn hình chiếc vé này gửi anh nha.</p><button class="soft-btn" id="backToTicket">Xem lại kèo date</button></div>
+      </section>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
